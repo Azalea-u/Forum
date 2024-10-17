@@ -41,7 +41,7 @@ func openBrowser(url string) {
 	} else if input == "n" {
 		fmt.Println(forum.INFO, "Browser opening canceled.")
 	} else {
-		fmt.Println("Invalid input. please enter \033[1;33m(y/n)\033[0m: ")
+		fmt.Println("Invalid input. ")
 		openBrowser(url)
 	}
 }
