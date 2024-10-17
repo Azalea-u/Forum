@@ -19,7 +19,16 @@
     <main>
         <h2>Welcome to the Forum</h2>
         <p>This is a simple forum. Here you can talk about anything you want.</p>
-
+        {{ range .Posts }}
+        <div>
+            <h3>{{ .Title }}</h3>
+            <time datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+            <p>posted by {{ .UserID }}</p>
+            <div>
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
     </main>
 </body>
 </html>

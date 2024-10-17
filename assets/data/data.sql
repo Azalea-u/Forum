@@ -47,3 +47,9 @@ CREATE TABLE LikeDislike (
     FOREIGN KEY (post_id) REFERENCES Post(id),
     FOREIGN KEY (comment_id) REFERENCES Comment(id)
 );
+
+DROP TABLE User;
+DROP TABLE Category;
+DROP TABLE Post;
+DROP TABLE Comment;
+DROP TABLE LikeDislike;

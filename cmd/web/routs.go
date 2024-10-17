@@ -2,8 +2,8 @@ package main
 
 import "net/http"
 
-func routes() http.Handler {
+func (app *app) routes() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("GET /", indexHandler)
+	mux.HandleFunc("GET /", app.indexHandler)
 	return mux
 }
