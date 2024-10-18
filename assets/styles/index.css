@@ -1,0 +1,128 @@
+:root {
+    --bg-dark: #24292e;
+    --text-light: #ffffff;
+    --bg-light: #fafafa;
+    --border-light: #ddd;
+    --link-dark: #586069;
+    --link-hover: #6d829b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #e0e0e0;
+    color: #333;}
+
+header {
+    background-color: var(--bg-dark);
+    padding: 1rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: var(--text-light);
+    font-size: 2rem;
+    letter-spacing: 1px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--link-dark);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.nav-link:hover {
+    background-color: var(--link-hover);
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    background-color: var(--text-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.forum-intro {
+    padding: 2rem;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.forum-intro h2 {
+    color: var(--bg-dark);
+    font-size: 1.8rem;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.forum-intro p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.posts {
+    padding: 1.5rem;
+}
+
+.post-item {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    color: var(--link-hover);
+    margin-bottom: 0.5rem;
+}
+
+.post-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.post-author {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-size: 0.85rem;
+}

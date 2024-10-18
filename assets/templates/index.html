@@ -3,32 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <title>##@#@</title>
 </head>
 <body>
     <header>
-        <h1>Forum</h1>
-        <nav>
-            <ul>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <h1>##@#@</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/register" class="nav-link">Sign Up</a></li>
+                    <li><a href="/login" class="nav-link">Log In</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h2>Welcome to the Forum</h2>
-        <p>This is a simple forum. Here you can talk about anything you want.</p>
-        {{ range .Posts }}
-        <div>
-            <h3>{{ .Title }}</h3>
-            <time datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
-            <p>posted by {{ .UserID }}</p>
-            <div>
-                {{ .Content }}
+        <section class="forum-intro">
+            <h2>Welcome to ##@#@</h2>
+            <p>Join the conversation and share your ideas.</p>
+        </section>
+
+        <section class="posts">
+            {{ range .Posts }}
+            <div class="post-item">
+                <h3>{{ .Title }}</h3>
+                <time datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+                <p class="author">Posted by {{ .UserID }}</p>
+                <div class="content">{{ .Content }}</div>
             </div>
-        </div>
-        {{ end }}
+            {{ end }}
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2024 ##@#@</p>
+    </footer>
 </body>
 </html>
