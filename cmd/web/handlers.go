@@ -39,3 +39,35 @@ func RestrictedFileServer(fs http.FileSystem, allowedExtensions []string) http.H
 
 	})
 }
+
+func (app *app) createPost(w http.ResponseWriter, r *http.Request) {
+
+	t, err := template.ParseFiles("./assets/templates/post.create.page.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if err := t.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+func (app *app) storePost(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+	err = app.posts.Insert(
+		r.PostForm.Get("title"),
+		r.PostForm.Get("content"),
+		r.PostForm.Get("category_id"),
+	)
+	if err != nil{
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w,r,"/", http.StatusFound)
+
+}

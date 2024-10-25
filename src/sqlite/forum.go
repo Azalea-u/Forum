@@ -10,6 +10,13 @@ type PostModel struct {
 	DB *sql.DB
 }
 
+func (f *PostModel) Insert(title, content, category_id string) error{
+	post := `INSERT INTO post (user_id, title, content, created_at, category_id)
+	VALUES (1, ?, ?, datetime('now'), ?)`
+	_, err := f.DB.Exec(post, title, content, category_id)
+	return err
+}
+
 func (f *PostModel) Posts() ([]models.Post, error) {
 	stmt := `SELECT p.id, p.user_id, p.title, p.content, p.created_at, p.category_id
 		FROM Post p

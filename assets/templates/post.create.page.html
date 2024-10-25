@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>##@#@</title>
+</head>
+<body>
+    <form action="/posts/create" method="post">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <textarea name="content" id="content"></textarea>
+        </div>
+        <div>
+            <label for="category_id">category</label>
+            <select name="category_id" id="category">
+                <option value="1">sport</option>
+                <option value="2">Art</option>
+                <option value="3">Science</option>
+            </select>
+        </div>
+        <div>
+            <button>Create post</button>
+        </div>
+    </form>
+</body>
+</html>
