@@ -5,6 +5,6 @@ import "net/http"
 func (app *app) routes() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", app.indexHandler)
-	mux.Handle("/styles/", http.StripPrefix("/styles", RestrictedFileServer(http.Dir("assets/styles"), []string{".css"})))
+	mux.Handle("/assets/", http.StripPrefix("/assets", RestrictedFileServer(http.Dir("assets"), []string{".css", ".html",".js"})))
 	return mux
 }
