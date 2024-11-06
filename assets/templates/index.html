@@ -21,21 +21,25 @@
 
     <main>
         <button onclick="location.href='/posts/create'">Create a post</button>
-        <section class="forum-intro">
+        <div class="forum-intro">
             <h2>Welcome to ##@#@</h2>
             <p>Join the conversation and share your ideas.</p>
-        </section>
+        </div>
 
-        <section class="posts">
+        <div class="posts">
+            <div class="filter-controls">
+                <button>new</button>
+                <button>top</button>
+            </div>
             {{ range .Posts }}
-            <div class="post-item">
+            <div class="post-item" onclick="location.href='post/{{ .ID }}'">
                 <h3>{{ .Title }}</h3>
                 <time datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
                 <p class="author">Posted by {{ .UserID }}</p>
                 <div class="content">{{ .Content }}</div>
             </div>
             {{ end }}
-        </section>
+        </div>
     </main>
 
     <footer>
