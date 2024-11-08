@@ -71,7 +71,7 @@ func (app *app) postDiscussion(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Retrieve the post by ID
-	post, err := app.posts.GetByID(postID)
+	post, comments, err := app.posts.GetByID(postID)
 	if err != nil {
 		http.Error(w, "Unable to retrieve post", http.StatusInternalServerError)
 		return
@@ -90,8 +90,10 @@ func (app *app) postDiscussion(w http.ResponseWriter, r *http.Request) {
 
 	data := struct {
 		Post models.Post
+		Comments []models.Comment
 	}{
 		Post: post,
+		Comments: comments,
 	}
 
 	if err := t.Execute(w, data); err != nil {

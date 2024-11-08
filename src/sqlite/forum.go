@@ -40,12 +40,11 @@ func (f *PostModel) Posts() ([]models.Post, error) {
 	return posts, nil
 }
 
-// GetByID retrieves a single post by its ID
-func (f *PostModel) GetByID(id int) (models.Post, error) {
+func (f *PostModel) GetByID(id int) (models.Post, []models.Comment, error) {
 	var post models.Post
 	query := `SELECT id, user_id, title, content, created_at, category_id FROM Post WHERE id = ?`
 
-	// Use QueryRow and Scan to populate the post struct
+	// Retrieve post
 	err := f.DB.QueryRow(query, id).Scan(
 		&post.ID,
 		&post.UserID,
@@ -54,13 +53,32 @@ func (f *PostModel) GetByID(id int) (models.Post, error) {
 		&post.CreatedAt,
 		&post.CategoryID,
 	)
-
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return post, nil // No post found with this ID
+			return post, nil, nil // No post found
 		}
-		return post, err
+		return post, nil, err
 	}
 
-	return post, nil
+	// Retrieve comments
+	commentQuery := `SELECT id, post_id, user_id, content, created_at FROM Comment WHERE post_id = ?`
+	rows, err := f.DB.Query(commentQuery, id)
+	if err != nil {
+		return post, nil, err
+	}
+	defer rows.Close()
+
+	var comments []models.Comment
+	for rows.Next() {
+		var comment models.Comment
+		if err := rows.Scan(&comment.ID, &comment.PostID, &comment.UserID, &comment.Content, &comment.CreatedAt); err != nil {
+			return post, nil, err
+		}
+		comments = append(comments, comment)
+	}
+	if err := rows.Err(); err != nil {
+		return post, nil, err
+	}
+
+	return post, comments, nil
 }

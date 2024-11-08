@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ .Post.Title }}</title>
-    <link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
     <h1>{{ .Post.Title }}</h1>
-    <p><strong>Posted by user:</strong> {{ .Post.UserID }}</p>
-    <p><strong>Created at:</strong> {{ .Post.CreatedAt }}</p>
+    <p><strong>Posted by:</strong> User {{ .Post.UserID }}</p>
     <p>{{ .Post.Content }}</p>
+    <hr>
+
+    <h2>Comments</h2>
+    {{ if .Comments }}
+        <ul>
+            {{ range .Comments }}
+                <li>
+                    <p><strong>User {{ .UserID }}:</strong> {{ .Content }}</p>
+                    <p><em>Posted at {{ .CreatedAt }}</em></p>
+                </li>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>No comments yet. Be the first to comment!</p>
+    {{ end }}
+
+    <!-- Add Comment Form -->
+    <form action="/post/{{ .Post.ID }}/comment" method="post">
+        <textarea name="content" placeholder="Write a comment..." required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
 </body>
 </html>
